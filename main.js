@@ -10,7 +10,7 @@ const stockCheckboxes = document.querySelectorAll('.stock-checkbox');
 
 // WebSocket instance and data state
 let socket = null;
-let subscribedStocks = new Set();
+let subscribedStocks = []; // Using array instead of Set
 let stockData = {};
 
 // Helper function to log messages to the UI
@@ -155,7 +155,7 @@ function setConnectionState(state) {
 // Reset UI elements
 function resetUI() {
     setConnectionState('disconnected');
-    subscribedStocks.clear();
+    subscribedStocks = []; // Changed from subscribedStocks.clear()
     stockData = {};
     renderStocks();
 }
@@ -182,7 +182,7 @@ function updateSubscriptions() {
     
     if (selectedStocks.length === 0) {
         // No stocks selected, show empty state
-        subscribedStocks.clear();
+        subscribedStocks = []; // Clear the array
         stockData = {};
         renderStocks();
         updateStatus('No stocks selected. Select stocks to track.');
@@ -200,7 +200,7 @@ function updateSubscriptions() {
     socket.send(JSON.stringify(subscribeCommand));
     
     // Update tracking
-    subscribedStocks = new Set(selectedStocks);
+    subscribedStocks = selectedStocks; // Store the array directly
     updateStatus(`Subscribed to ${selectedStocks.join(', ')}`);
     
     // Initialize stock cards
@@ -253,7 +253,7 @@ function processStockData(data) {
         }
         
         // Only process if we have both symbol and price
-        if (symbol && price && !isNaN(price) && subscribedStocks.has(symbol)) {
+        if (symbol && price && !isNaN(price) && subscribedStocks.includes(symbol)) { // Using array.includes() instead of Set.has()
             // Store previous price for comparison
             const previousPrice = stockData[symbol].price;
             
