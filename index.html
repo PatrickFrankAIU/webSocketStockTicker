@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Stock Tracker</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Real-Time Stock Tracker</h1>
+        <p class="description">
+            Demonstrates WebSockets by connecting to EODHD's real-time stock data API.
+            Using demo API key that works with: AAPL, MSFT, TSLA, EURUSD, ETH-USD, and BTC-USD.
+        </p>
+
+        <div class="controls">
+            <button id="connect-btn">Connect</button>
+            <button id="disconnect-btn" disabled>Disconnect</button>
+            <span id="connection-status" class="disconnected">Disconnected</span>
+        </div>
+        
+        <div class="status" id="status-message">Not connected to server.</div>
+
+        <div class="stock-selector">
+            <label for="stock-select">Select stocks to watch:</label>
+            <div class="stock-options">
+                <div class="stock-option">
+                    <input type="checkbox" id="stock-aapl" class="stock-checkbox" value="AAPL">
+                    <label for="stock-aapl">Apple (AAPL)</label>
+                </div>
+                <div class="stock-option">
+                    <input type="checkbox" id="stock-msft" class="stock-checkbox" value="MSFT">
+                    <label for="stock-msft">Microsoft (MSFT)</label>
+                </div>
+                <div class="stock-option">
+                    <input type="checkbox" id="stock-tsla" class="stock-checkbox" value="TSLA">
+                    <label for="stock-tsla">Tesla (TSLA)</label>
+                </div>
+                <div class="stock-option">
+                    <input type="checkbox" id="stock-eurusd" class="stock-checkbox" value="EURUSD">
+                    <label for="stock-eurusd">EUR/USD</label>
+                </div>
+                <div class="stock-option">
+                    <input type="checkbox" id="stock-eth" class="stock-checkbox" value="ETH-USD">
+                    <label for="stock-eth">Ethereum (ETH-USD)</label>
+                </div>
+                <div class="stock-option">
+                    <input type="checkbox" id="stock-btc" class="stock-checkbox" value="BTC-USD">
+                    <label for="stock-btc">Bitcoin (BTC-USD)</label>
+                </div>
+            </div>
+            <button id="update-btn" disabled>Update Subscriptions</button>
+        </div>
+
+        <div id="stock-container" class="stock-container">
+            <div class="no-stocks">
+                Select stocks above and connect to see real-time prices
+            </div>
+        </div>
+
+        <div id="message-log" class="message-log">
+            <h3>WebSocket Message Log</h3>
+            <div id="log-container"></div>
+        </div>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>
