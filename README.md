@@ -5,3 +5,4 @@ Simple front-end connecting to a stock ticker service (demo account) using WebSo
 Patrick Frank, Instructor
 
 Pages Hosting URL:
+https://patrickfrankaiu.github.io/webSocketStockTicker/
